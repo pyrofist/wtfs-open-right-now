@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import lookup
 
 application = Flask(__name__)
 
@@ -7,9 +8,10 @@ def index():
     return render_template("index.html")
 
 @application.route("/location", methods=["POST"])
-def lookup():
+def get_location():
     address = request.form["address"]
-    return render_template("location.html", location=address)
+    data = lookup.process_address(address)
+    return render_template("location.html", data=data)
 
 if __name__ == "__main__":
     application.run()
