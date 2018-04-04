@@ -15,6 +15,18 @@ def process_address(address):
 		find_restaurants(data)
 	return data
 
+def process_coords(lat, lng):
+	data = {}
+	r = requests.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
+						lat + "," + lng + "&key=" + GOOGLE_API)
+	if r.status_code == 200:
+		json = r.json()
+		data["lat"] = lat
+		data["lng"] = lng
+		data["formatted"] = json["results"][0]["formatted_address"]
+		find_restaurants(data)
+	return data
+
 def filter_relevant(item):
 	restaurant = {}
 	restaurant["name"] = item["name"]
