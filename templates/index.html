@@ -3,11 +3,15 @@
     <head>
         <meta charset="utf-8">
         <title>WTFs Open Right Now</title>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="/static/js/app.js"></script>
     </head>
     <body>
         <form action="location" method="POST">
-            <input type="text" name="address", placeholder="Location">
+            <input type="text" id="address" name="address" placeholder="Location">
             <input type="submit" value="Feed Me!">
+            <input type="hidden" id="lat" name="lat">
+            <input type="hidden" id="lng" name="lng">
         </form>
     </body>
 </html>
